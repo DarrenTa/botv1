@@ -1,0 +1,68 @@
+//// -- LEVEL 1
+//// -- Tables and References
+//// -- Produced with dbdiagram.io
+
+// Creating tables
+
+
+Table Round as R{
+  id int [pk, increment] 
+  start_time timestamp
+}
+
+Table Selllevels {
+  id int [pk, increment]
+  round int 
+  level int
+  order_id text
+  price float
+  amount float
+}
+
+Table Buyorders {
+  id int [pk, increment]
+  round int
+  time_placed timestamp
+  amount float
+  price float
+}
+
+Table Activesells {
+  id int [pk, increment]
+  round int
+  order_id text
+  price float
+  amount float
+  time timestamp
+}
+
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+Ref: R.id < Selllevels.round
+Ref: R.id < Buyorders.round
+Ref: R.id < Activesells.round
+Ref: Selllevels.order_id < Activesells.order_id
+
+
+
+//----------------------------------------------//
+
+//// -- LEVEL 2
+//// -- Adding column settings
+
+
+
+
+//----------------------------------------------//
+
+//// -- Level 3 
+//// -- Enum, Indexes
+
+// Enum for 'products' table below
+
+// Indexes: You can define a single or multi-column index 
+
+
+
